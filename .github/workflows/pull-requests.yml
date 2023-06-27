@@ -1,0 +1,24 @@
+name: PR Actions
+
+on: [push]
+
+jobs:
+  # Checks that the project compiles
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        
+    - name: Build with Maven
+      run: mvn -f actions/pom.xml package --batch-mode --no-transfer-progress
+
+    - name: Run tests with Maven
+      run: mvn -f actions/pom.xml test --batch-mode --no-transfer-progress
