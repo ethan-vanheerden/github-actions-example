@@ -3,7 +3,6 @@ name: PR Actions
 on: [push]
 
 jobs:
-  # Checks that the project compiles
   build:
     name: Build and Test
     runs-on: ubuntu-latest
